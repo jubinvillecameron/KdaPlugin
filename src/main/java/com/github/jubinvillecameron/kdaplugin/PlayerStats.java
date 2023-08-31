@@ -5,7 +5,7 @@ import org.bukkit.entity.Player;
 import java.io.Serializable;
 import java.util.UUID;
 
-public class playerStats implements Serializable {
+public class PlayerStats implements Serializable {
 
     /*
     All player data is stores and serialized in this variable.
@@ -22,7 +22,7 @@ public class playerStats implements Serializable {
 
     private String name;
 
-    public playerStats(Player player){
+    public PlayerStats(Player player){
 
         PLAYERUUID = player.getUniqueId();
         name = player.getName();

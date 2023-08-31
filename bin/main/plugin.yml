@@ -1,0 +1,4 @@
+name: KdaPlugin
+version: '${version}'
+main: com.github.jubinvillecameron.kdaplugin.KdaPlugin
+api-version: '1.20'

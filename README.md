@@ -1,2 +1,2 @@
 # KdaPlugin
-Track players kills,deaths and KDA
+Tracks players kills,deaths and KDA efficiently.
