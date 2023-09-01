@@ -3,7 +3,6 @@ package com.github.jubinvillecameron.kdaplugin;
 import com.github.jubinvillecameron.kdaplugin.listeners.onDeath;
 import com.github.jubinvillecameron.kdaplugin.listeners.onJoin;
 import com.github.jubinvillecameron.kdaplugin.util.PlayerStats;
-import com.github.jubinvillecameron.kdaplugin.util.UUIDPlayerKey;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.HashMap;
@@ -11,7 +10,7 @@ import java.util.UUID;
 
 public final class KdaPlugin extends JavaPlugin {
 
-    private static HashMap<UUIDPlayerKey, PlayerStats> playerStats = new HashMap<>();
+    private static HashMap<UUID, PlayerStats> playerStats = new HashMap<>();
 
     @Override
     public void onEnable() {
@@ -51,7 +50,7 @@ public final class KdaPlugin extends JavaPlugin {
         // Plugin shutdown logic
     }
 
-    public static HashMap<UUIDPlayerKey, PlayerStats> getPlayerStats(){
+    public static HashMap<UUID, PlayerStats> getPlayerStats(){
 
         return playerStats;
     }

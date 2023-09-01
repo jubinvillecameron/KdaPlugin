@@ -2,7 +2,6 @@ package com.github.jubinvillecameron.kdaplugin.listeners;
 
 import com.github.jubinvillecameron.kdaplugin.KdaPlugin;
 import com.github.jubinvillecameron.kdaplugin.util.PlayerStats;
-import com.github.jubinvillecameron.kdaplugin.util.UUIDPlayerKey;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PlayerDeathEvent;
@@ -22,14 +21,12 @@ public class onDeath implements Listener {
         if(killer != null){
 
             //get stats, make sure it isn't null for our player then update them
-            HashMap<UUIDPlayerKey, PlayerStats> pStats = KdaPlugin.getPlayerStats();
+            HashMap<UUID, PlayerStats> pStats = KdaPlugin.getPlayerStats();
 
-            UUIDPlayerKey victimUP = new UUIDPlayerKey(victim);
-            UUIDPlayerKey killerUP = new UUIDPlayerKey(killer);
 
-            @NotNull PlayerStats victimStats = pStats.get(victimUP);
+            @NotNull PlayerStats victimStats = pStats.get(victim.getUniqueId());
 
-            @NotNull PlayerStats killerStats = pStats.get(killerUP);
+            @NotNull PlayerStats killerStats = pStats.get(killer.getUniqueId());
 
             if (victimStats == null){
                 throw new RuntimeException("Victim does not have a PlayerStats object");
@@ -46,8 +43,8 @@ public class onDeath implements Listener {
             killerStats.updateKDA();
 
             //put it back where it came from
-            pStats.put(killerUP,killerStats);
-            pStats.put(victimUP, victimStats);
+            pStats.put(killer.getUniqueId(),killerStats);
+            pStats.put(victim.getUniqueId(), victimStats);
 
         }
     }
