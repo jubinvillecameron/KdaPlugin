@@ -1,9 +1,12 @@
 package com.github.jubinvillecameron.kdaplugin.util;
 
+import org.bukkit.entity.Player;
+
+import java.io.Serializable;
 import java.util.Objects;
 import java.util.UUID;
 
-public class UUIDPlayerKey {
+public class UUIDPlayerKey implements Serializable {
     /*
     Class is so that our hashmap gets properly updated when a player changes their player name,
     allows us to properly lookup said players stats using the hashmap, otherwise we would have to do http requests to
@@ -16,6 +19,12 @@ public class UUIDPlayerKey {
 
         this.PLAYERUUID = pUUID;
         this.playerName = pName;
+    }
+
+    public UUIDPlayerKey(Player player){
+
+        this.PLAYERUUID = player.getUniqueId();
+        this.playerName = player.getName();
     }
 
     @Override
