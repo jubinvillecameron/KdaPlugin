@@ -1,4 +1,4 @@
-package com.github.jubinvillecameron.kdaplugin;
+package com.github.jubinvillecameron.kdaplugin.util;
 
 import org.bukkit.entity.Player;
 

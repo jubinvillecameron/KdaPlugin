@@ -2,6 +2,7 @@ package com.github.jubinvillecameron.kdaplugin;
 
 import com.github.jubinvillecameron.kdaplugin.listeners.onDeath;
 import com.github.jubinvillecameron.kdaplugin.listeners.onFirstJoin;
+import com.github.jubinvillecameron.kdaplugin.util.PlayerStats;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.HashMap;
@@ -26,6 +27,13 @@ public final class KdaPlugin extends JavaPlugin {
 
         this.getServer().getPluginManager().registerEvents(new onFirstJoin(), this); //onJoin we initialize new stats object if we didn't load it
         this.getServer().getPluginManager().registerEvents(new onDeath(), this); //onDeath updates players kills and deaths if they were killed by player
+
+        //load all of our data, if no data is found we create a folder
+        getDataFolder().mkdirs();
+        getDataFolder().setWritable(true);
+        getDataFolder().setExecutable(true);
+
+
 
 
     }

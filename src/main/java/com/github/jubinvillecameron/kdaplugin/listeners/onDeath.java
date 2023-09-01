@@ -1,7 +1,7 @@
 package com.github.jubinvillecameron.kdaplugin.listeners;
 
 import com.github.jubinvillecameron.kdaplugin.KdaPlugin;
-import com.github.jubinvillecameron.kdaplugin.PlayerStats;
+import com.github.jubinvillecameron.kdaplugin.util.PlayerStats;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PlayerDeathEvent;
