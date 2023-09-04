@@ -1,5 +1,6 @@
 package com.github.jubinvillecameron.kdaplugin;
 
+import com.github.jubinvillecameron.kdaplugin.commands.StatsCommand;
 import com.github.jubinvillecameron.kdaplugin.listeners.onDeath;
 import com.github.jubinvillecameron.kdaplugin.listeners.onJoin;
 import com.github.jubinvillecameron.kdaplugin.util.PlayerStats;
@@ -39,6 +40,8 @@ public final class KdaPlugin extends JavaPlugin {
         //idea for later, is having a sql data server which we can request from, and when a player logs on we request their specific data
         //then load it in our hashmap, and when they leave the server we update our sql database then remove it from the hashmap
         //for offline players we can also look things up, and through our web server we can easily find our highest values
+
+        this.getCommand("stats").setExecutor(new StatsCommand());
 
 
 

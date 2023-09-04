@@ -2,3 +2,9 @@ name: KdaPlugin
 version: '${version}'
 main: com.github.jubinvillecameron.kdaplugin.KdaPlugin
 api-version: '1.20'
+
+commands:
+  stats:
+      description: check the kill stats of a player
+      usage: /stats check <username>
+      permission: kda.check
