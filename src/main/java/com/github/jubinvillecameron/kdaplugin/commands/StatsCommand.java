@@ -128,7 +128,7 @@ public class StatsCommand implements CommandExecutor {
 
 
             } catch (IOException e) {
-                e.printStackTrace();
+
             }
         }
 

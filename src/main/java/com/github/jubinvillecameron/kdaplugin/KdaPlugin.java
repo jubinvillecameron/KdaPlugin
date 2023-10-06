@@ -6,6 +6,7 @@ import com.github.jubinvillecameron.kdaplugin.listeners.onJoin;
 import com.github.jubinvillecameron.kdaplugin.util.PlayerStats;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.io.*;
 import java.util.HashMap;
 import java.util.UUID;
 
@@ -43,6 +44,36 @@ public final class KdaPlugin extends JavaPlugin {
 
         this.getCommand("stats").setExecutor(new StatsCommand());
 
+        getLogger().info("Loading kills");
+
+        //load our serialized file
+        String filePath = getDataFolder() + "killStats.ser";
+        try {
+            // Create an ObjectInputStream to deserialize the HashMap from the specified file path
+            FileInputStream fileInputStream = new FileInputStream(filePath);
+            ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
+
+            // Deserialize the object (in this case, it should be a HashMap)
+            HashMap<UUID, PlayerStats> deserializedHashMap = (HashMap<UUID, PlayerStats>) objectInputStream.readObject();
+
+            // Close the streams
+            objectInputStream.close();
+            fileInputStream.close();
+
+            // Now you can work with the deserialized HashMap
+            getLogger().info("Kills have been loaded");
+
+            playerStats = deserializedHashMap; //if File not found, it's fine since our class initializes an empty hashmap anyways
+
+
+
+        } catch (FileNotFoundException e) {
+
+            getLogger().info("File does not exist, will generate on plugin shutdown");
+        }
+        catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
 
 
 
@@ -51,6 +82,25 @@ public final class KdaPlugin extends JavaPlugin {
     @Override
     public void onDisable() {
         // Plugin shutdown logic
+
+        try {
+            // Create an ObjectOutputStream to serialize the HashMap
+            String filePath = getDataFolder() + "killStats.ser";
+            FileOutputStream fileOutputStream = new FileOutputStream(filePath);
+            ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
+
+            // Serialize the HashMap
+            objectOutputStream.writeObject(playerStats);
+
+            // Close the streams
+            objectOutputStream.close();
+            fileOutputStream.close();
+
+            getLogger().info("Kills have been saved");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
     public static HashMap<UUID, PlayerStats> getPlayerStats(){
